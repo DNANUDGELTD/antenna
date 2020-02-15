@@ -4,11 +4,12 @@ require "antenna/infoplist"
 
 module Antenna
   class IPA
-    attr_accessor :filename, :app_name, :info_plist, :bundle_icon_files
+    attr_accessor :filename, :app_name, :info_plist, :bundle_icon_files, :file_last_modified_date
 
     def initialize(filename)
       @filename = filename
       @bundle_icon_files = {}
+      @file_last_modified_date = File.mtime(@filename).strftime("%Y-%m-%d %I:%M%p")
 
       Zip::File.open(filename) do |zipfile|
         # Determine app name

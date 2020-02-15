@@ -4,10 +4,10 @@ module Antenna
   class HTML
     include ERB::Util
   
-    attr_accessor :info_plist, :manifest_url, :display_image_url, :need_shine
+    attr_accessor :info_plist, :manifest_url, :display_image_url, :need_shine, :file_last_modified
 
-    def initialize(info_plist, manifest_url, display_image_url)
-        @info_plist, @manifest_url, @display_image_url = info_plist, manifest_url, display_image_url
+    def initialize(info_plist, manifest_url, display_image_url, file_last_modified_date)
+        @info_plist, @manifest_url, @display_image_url = info_plist, manifest_url, display_image_url, @file_last_modified = file_last_modified_date
     end
 
     def template
@@ -40,6 +40,7 @@ module Antenna
 <body>
     <h1><%= @info_plist.bundle_display_name %></h1>
     <h2><%= @info_plist.bundle_short_version %> (<%= @info_plist.bundle_version %>)</h2>
+    <h2><%= @file_last_modified %></h1>
     <% if @display_image_url %>
     <a href="itms-services://?action=download-manifest&amp;url=<%= u(@manifest_url) %>">
         <img src="<%= @display_image_url %>">

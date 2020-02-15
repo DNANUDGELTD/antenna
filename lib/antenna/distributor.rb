@@ -68,7 +68,7 @@ module Antenna
     end
 
     def build_html(ipa, manifest_url, app_icon_url)
-      Antenna::HTML.new(ipa.info_plist, manifest_url, app_icon_url)
+      Antenna::HTML.new(ipa.info_plist, manifest_url, app_icon_url, ipa.file_last_modified_date)
     end
   end
 end
